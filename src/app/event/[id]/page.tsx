@@ -13,9 +13,9 @@ import React from "react";
 import TicketPurchaseCard from "@/components/TicketCard/TicketPurchaseCard";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const Page = async ({ params }: PageProps) => {
@@ -28,6 +28,7 @@ const Page = async ({ params }: PageProps) => {
     .select("*")
     .eq("id", id)
     .single();
+
   console.log("Event data:", event);
 
   if (error || !event) {
@@ -74,6 +75,7 @@ const Page = async ({ params }: PageProps) => {
                 </CardDescription>
               </CardHeader>
             </Card>
+
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl">Event Information</CardTitle>
@@ -100,6 +102,7 @@ const Page = async ({ params }: PageProps) => {
               </CardContent>
             </Card>
           </div>
+
           <div className="space-y-6">
             <TicketPurchaseCard event={event} />
           </div>
